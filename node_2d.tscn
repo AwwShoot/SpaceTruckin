@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://tfw7ojrabcv3"]
+[gd_scene load_steps=3 format=3 uid="uid://tfw7ojrabcv3"]
 
+[ext_resource type="Script" path="res://node_2d.gd" id="1_1p1bw"]
 [ext_resource type="Texture2D" uid="uid://mxsc5ft62i8t" path="res://PNG Sprites/Backgrounds/even more space.png" id="1_qr7sy"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(2, 0)
+script = ExtResource("1_1p1bw")
 
 [node name="BGEvenMoreSpace" type="Sprite2D" parent="."]
 texture = ExtResource("1_qr7sy")
