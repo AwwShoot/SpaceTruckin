@@ -1,7 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://tfw7ojrabcv3"]
+[gd_scene load_steps=17 format=3 uid="uid://tfw7ojrabcv3"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1p1bw"]
 [ext_resource type="Texture2D" uid="uid://mxsc5ft62i8t" path="res://PNG Sprites/Backgrounds/even more space.png" id="1_qr7sy"]
+[ext_resource type="Texture2D" uid="uid://cbeivyyl0dher" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f1.png" id="3_kmcsx"]
+[ext_resource type="Texture2D" uid="uid://bok2cuj857mvn" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f2.png" id="4_e5tud"]
+[ext_resource type="Texture2D" uid="uid://4msrc8q0b6ji" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f3.png" id="5_ciw1b"]
+[ext_resource type="Texture2D" uid="uid://buvse31vp3sqg" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f4.png" id="6_hg6th"]
+[ext_resource type="Texture2D" uid="uid://e70id8sp66e0" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f5.png" id="7_fm3yt"]
+[ext_resource type="Texture2D" uid="uid://bs355rnlkkav8" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f6.png" id="8_88ofq"]
+[ext_resource type="Texture2D" uid="uid://5kx3wbes6tgk" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f7.png" id="9_x2rpr"]
+[ext_resource type="Texture2D" uid="uid://dy4rmi04wkg6e" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f8.png" id="10_ejs10"]
+[ext_resource type="Texture2D" uid="uid://dsl62tkpdpldr" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f9.png" id="11_a4x2d"]
+[ext_resource type="Texture2D" uid="uid://d0vdhdtsqvbs8" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f10.png" id="12_pttmv"]
+[ext_resource type="Texture2D" uid="uid://l7uediagm4w8" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f11.png" id="13_m3aqn"]
+[ext_resource type="Texture2D" uid="uid://7sfxlr5tcxux" path="res://PNG Sprites/Sprite Individual/Player Trucker/char sprite trucker f12.png" id="14_t8d6s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opkku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kmcsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e5tud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ciw1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hg6th")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fm3yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_88ofq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_x2rpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ejs10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a4x2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pttmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m3aqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_t8d6s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayu1k"]
+size = Vector2(14, 8)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(2, 0)
@@ -10,3 +69,13 @@ script = ExtResource("1_1p1bw")
 [node name="BGEvenMoreSpace" type="Sprite2D" parent="."]
 texture = ExtResource("1_qr7sy")
 centered = false
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(90, 49)
+
+[node name="PlayerSpriteAnimated" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_opkku")
+
+[node name="PlayerWalkbox" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_ayu1k")
