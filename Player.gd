@@ -10,10 +10,12 @@ func placeguy(): # feel free to give this a better name, anyone
 	# initialize direction & idle pose
 	$PlayerSpriteAnimated.animation = "walk_down"
 	$PlayerSpriteAnimated.frame = 3
-	
+
+# called when the node enters the scene tree for the first time
 func _ready():
 	placeguy()
 
+# called every frame
 func _process(delta):
 	moving = false # set moving to false so, if you're not moving, the animation doesn't play
 	# read inputs
