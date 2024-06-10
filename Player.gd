@@ -56,3 +56,6 @@ func _process(delta):
 	if not moving:
 		$PlayerSpriteAnimated.stop()
 		$PlayerSpriteAnimated.frame = 3 # set frame to an idle standing
+		
+	# there is still a bug where if a direction is held and the opposite direction
+	# is pressed repeatedly, the player moves without stepping and just glides
