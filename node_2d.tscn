@@ -158,7 +158,7 @@ script = ExtResource("3_snxa0")
 [node name="PlayerSpriteAnimated" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_opkku")
-animation = &"walk_up"
+animation = &"walk_down"
 
 [node name="PlayerWalkbox" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_ayu1k")

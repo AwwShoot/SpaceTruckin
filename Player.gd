@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # constants && variables
-const speed = 100
+const speed = 90
 
 var direction = 0 # 0-3, each corresponding with a direction
 var moving = false # determines if animation plays
@@ -19,31 +19,39 @@ func _ready():
 func _process(delta):
 	moving = false # set moving to false so, if you're not moving, the animation doesn't play
 	# read inputs
-	if Input.is_action_pressed("move_up"):
+	# in the current order, the left-right animations will play when going diagonally,
+	# which i (jacky) prefer the look of, but this can be easily changed
+	if Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_down"):
 		position.y -= speed * delta
 		direction = 2
 		moving = true
-		$PlayerSpriteAnimated.animation = "walk_up"
-		# if player is inputting multiple directions at time,
-		# no animation will play because it constantly circles between the two
-		# and doesn't get a chance to advance frames
-	if Input.is_action_pressed("move_down"):
+	if Input.is_action_pressed("move_down") and not Input.is_action_pressed("move_up"):
 		position.y += speed * delta
 		direction = 0
 		moving = true
-		$PlayerSpriteAnimated.animation = "walk_down"
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
 		position.x -= speed * delta
 		direction = 1
 		moving = true
-		$PlayerSpriteAnimated.animation = "walk_left"
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
 		position.x += speed * delta
 		direction = 3
 		moving = true
-		$PlayerSpriteAnimated.animation = "walk_right"
+	# if just pressed move button
+	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up"):
+		# leg out so short presses still show a step from the player
+		$PlayerSpriteAnimated.frame = 0
 	# animate
 	if moving:
+		match(direction): # seperated like this so the animation works even when pressing multiple buttons
+			0: # down
+				$PlayerSpriteAnimated.animation = "walk_down"
+			1: # left
+				$PlayerSpriteAnimated.animation = "walk_left"
+			2: # up
+				$PlayerSpriteAnimated.animation = "walk_up"
+			3: # right
+				$PlayerSpriteAnimated.animation = "walk_right"
 		$PlayerSpriteAnimated.play()
 	if not moving:
 		$PlayerSpriteAnimated.stop()
