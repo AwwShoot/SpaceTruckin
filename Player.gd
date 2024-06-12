@@ -37,8 +37,8 @@ func _process(delta):
 		position.x += speed * delta
 		direction = 3
 		moving = true
-	# if just pressed move button
-	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up"):
+	# if just pressed move button || just released a button that was preventing movement
+	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_released("move_down") or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right") or Input.is_action_just_released("move_up"):
 		# leg out so short presses still show a step from the player
 		$PlayerSpriteAnimated.frame = 0
 	# animate
@@ -53,9 +53,6 @@ func _process(delta):
 			3: # right
 				$PlayerSpriteAnimated.animation = "walk_right"
 		$PlayerSpriteAnimated.play()
-	if not moving:
+	else:
 		$PlayerSpriteAnimated.stop()
 		$PlayerSpriteAnimated.frame = 3 # set frame to an idle standing
-		
-	# there is still a bug where if a direction is held and the opposite direction
-	# is pressed repeatedly, the player moves without stepping and just glides
