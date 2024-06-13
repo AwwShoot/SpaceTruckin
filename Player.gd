@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 # constants && variables
 const speed = 90
+const movements = ["move_up", "move_down", "move_left", "move_right"]
 
 var direction = 0 # 0-3, each corresponding with a direction
 var moving = false # determines if animation plays
@@ -45,9 +46,11 @@ func _process(delta):
 		# animate
 		
 	# if just pressed move button || just released button that was preventing movement
-	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_released("move_down") or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right") or Input.is_action_just_released("move_up"):
-		# leg out so short presses still show a step from the player
-		$PlayerSpriteAnimated.frame = 0 # first step frame
+		for i in 4:
+			if Input.is_action_just_pressed(movements[i]) or Input.is_action_just_released(movements[i]):
+				# leg out so short presses still show a step from the player
+				$PlayerSpriteAnimated.frame = 0 # first step frame
+				break
 	if moving:
 		match(direction): # seperated like this so the animation works even when pressing multiple buttons
 			0: # down
